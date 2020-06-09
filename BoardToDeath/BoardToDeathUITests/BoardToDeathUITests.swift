@@ -20,8 +20,16 @@ class BoardToDeathUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-
+      app = nil // so we get new instance of app
     }
+  
+  func testOnboarding_WhenSwiped_ShouldLoadNewVC(){
+    app.launch()
+    XCTAssertTrue(app.staticTexts["Welcome to BoardToDeath"].exists)
+    app.swipeLeft()
+    XCTAssertTrue(app.staticTexts["Custom Puppy Content"].exists)
+    
+  }
 
 
 }
