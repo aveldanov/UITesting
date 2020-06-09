@@ -1,10 +1,4 @@
-//
-//  Constants.swift
-//  BoardToDeath
-//
-//  Created by Caleb Stultz on 1/16/18.
-//  Copyright © 2018 Caleb Stultz. All rights reserved.
-//
+
 
 import Foundation
 
