@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         label.text = "Now THAT's colorful!"
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         label.textAlignment = .center
-//        view.addSubview(label)
+        view.addSubview(label)
     }
     
 }
