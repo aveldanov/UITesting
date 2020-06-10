@@ -14,6 +14,8 @@ class OnboardingPageVC: UIViewController {
       let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
       
       alert.addAction(alertAction)
+      
+      alert.view.accessibilityIdentifier = "Alert"
       present(alert, animated: true, completion: nil)
     }
     

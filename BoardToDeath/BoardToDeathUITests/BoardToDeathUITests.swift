@@ -37,6 +37,8 @@ class BoardToDeathUITests: XCTestCase {
     app.swipeLeft()
     
     app.buttons["Done"].tap()
+    
+    XCTAssertTrue(app.alerts["Alert"].exists)
   }
 
 
