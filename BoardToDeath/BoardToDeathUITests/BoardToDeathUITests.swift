@@ -8,20 +8,22 @@
 
 import XCTest
 
+@testable import BoardToDeath
+
 class BoardToDeathUITests: XCTestCase {
   
   var app: XCUIApplication!
-
-    override func setUpWithError() throws {
-        app = XCUIApplication()
-        continueAfterFailure = false
-
-   
-    }
-
-    override func tearDownWithError() throws {
-      app = nil // so we get new instance of app
-    }
+  
+  override func setUpWithError() throws {
+    app = XCUIApplication()
+    continueAfterFailure = false
+    app.launchArguments.append("--uitesting")
+    
+  }
+  
+  override func tearDownWithError() throws {
+    app = nil // so we get new instance of app
+  }
   
   func testOnboarding_WhenSwiped_ShouldLoadNewVC(){
     app.launch()
@@ -40,6 +42,30 @@ class BoardToDeathUITests: XCTestCase {
     
     XCTAssertTrue(app.alerts["Alert"].exists)
   }
+  
+  func testOnboarding_WhenFinished_OnboardVCDismisses(){
+    app.launch()
+    XCTAssertTrue(app.isDisplayingOnboarding)
+    app.swipeLeft()
+    app.swipeLeft()
+    app.buttons["Done"].tap()
+    
+    XCTAssertFalse(app.isDisplayingOnboarding)
+  }
+  
+  
+}
 
 
+
+extension XCUIApplication{
+  var isDisplayingOnboarding: Bool{
+    return otherElements["onboardingView"].exists
+    
+    
+  }
+  
+  
+  
+  
 }
