@@ -9,6 +9,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+      print("COMLINE!!!!!!!!!!!!!!!!!!!!!!!!!!:", CommandLine.arguments.contains("--uitesting"))
+      resetState()
+
         if CommandLine.arguments.contains("--uitesting") {
           print("State reset")
             resetState()
@@ -41,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func resetState() {
         guard let bundleIdentifier = Bundle.main.bundleIdentifier else { fatalError() }
         UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+        UserDefaults.standard.synchronize()
+        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+
     }
 }
 
