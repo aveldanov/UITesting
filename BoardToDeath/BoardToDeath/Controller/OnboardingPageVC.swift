@@ -8,6 +8,7 @@ class OnboardingPageVC: UIViewController {
         
     @IBAction func doneBtnWasPressed(_ sender: Any) {
         userDefaults.onboardingCompleted = true
+      print("Boommmmm")
         dismiss(animated: true)
       
 //      let alert = UIAlertController(title: "You did it", message: "Congrats! You finished onboarding", preferredStyle: .alert)

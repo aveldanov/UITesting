@@ -14,7 +14,7 @@ class InterfaceVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         captionLabel.isHidden = true
-        
+      print("WHAT", userDefaults.onboardingCompleted)
         if !userDefaults.onboardingCompleted {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let onboardingVC = storyboard.instantiateViewController(withIdentifier: STORYBOARD_ID_ONBOARDING_VC) as? OnboardingVC else { return }
@@ -23,10 +23,14 @@ class InterfaceVC: UIViewController {
             let alertVC = UIAlertController(title: "You did it!", message: "Yay, you made it. You are the best. Sort of.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Awesome!", style: .default, handler: nil)
             alertVC.addAction(action)
+          print("BOOM")
             present(alertVC, animated: true, completion: nil)
         }
     }
     
+  
+  
+  
     func downloadImage(fromURL urlString: String, completion: @escaping (UIImage) -> Void) {
         guard let url = URL(string: urlString) else { fatalError() }
         URLSession.shared.dataTask(with: url) { (data, response, error) in

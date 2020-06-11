@@ -33,15 +33,15 @@ class BoardToDeathUITests: XCTestCase {
     
   }
   
-//  func testOnboarding_WhenDoneButtonTapped_PresentsAlert(){
-//    app.launch()
-//    app.swipeLeft()
-//    app.swipeLeft()
-//
-//    app.buttons["Done"].tap()
-//
-//    XCTAssertTrue(app.alerts["Alert"].exists)
-//  }
+  //  func testOnboarding_WhenDoneButtonTapped_PresentsAlert(){
+  //    app.launch()
+  //    app.swipeLeft()
+  //    app.swipeLeft()
+  //
+  //    app.buttons["Done"].tap()
+  //
+  //    XCTAssertTrue(app.alerts["Alert"].exists)
+  //  }
   
   
   func testTemp(){
@@ -64,6 +64,56 @@ class BoardToDeathUITests: XCTestCase {
   }
   
   
+  //  func testInterfaceVC_AlertViewShows_WhenOnboardingComplete(){
+  //    app.launch()
+  //    app.swipeLeft()
+  //    app.swipeLeft()
+  //    app.buttons["Done"].tap()
+  //
+  //
+  //    XCTAssertTrue(app.isDisplayingAlertVC,"AlertVS Should Show when onboarding dismissed")
+  //  }
+  
+  func testEmailInput_WhenEmailGiven_FillsTextField(){
+    app.launch()
+    app.swipeLeft()
+    app.swipeLeft()
+    app.buttons["Done"].tap()
+    let emailTextField = app.textFields["Email"]
+    emailTextField.tap()
+    emailTextField.typeText("test@test.com")
+    XCTAssertTrue(app.textFields["test@test.com"].exists)
+  }
+  
+  func testPasswordInput_WhenPasswordGiven_FillsTextField(){
+    app.launch()
+    app.swipeLeft()
+    app.swipeLeft()
+    app.buttons["Done"].tap()
+    let passwordTextField = app.textFields["Password"]
+    passwordTextField.tap()
+    passwordTextField.typeText("123")
+    XCTAssertTrue(app.textFields["123"].exists)
+  }
+  
+  func testImageDownload_WhenDownLoadComplete_CaptionLabelShowing(){
+    app.launch()
+    
+    let imageCaption = app.staticTexts["What a beautiful image!"]
+    let exists = NSPredicate(format: "exists == true")
+    // if exists == true -> continue
+    expectation(for: exists, evaluatedWith: imageCaption, handler: nil)
+    app.swipeLeft()
+    app.swipeLeft()
+    app.buttons["Done"].tap()
+    
+    app.buttons["Load Image"].tap()
+    waitForExpectations(timeout: 5, handler: nil)
+    XCTAssert(imageCaption.exists)
+  }
+  
+  
+  
 }
 
 
@@ -72,6 +122,13 @@ extension XCUIApplication{
   var isDisplayingOnboarding: Bool{
     return otherElements["onboardingView"].exists
     
+    
+  }
+  
+  
+  var isDisplayingAlertVC:Bool{
+    
+    return alerts["You did it!"].exists
     
   }
   
